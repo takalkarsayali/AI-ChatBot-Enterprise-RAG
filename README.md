@@ -23,5 +23,23 @@ This project is decoupled into microservices and orchestrated via **Docker Compo
 1. Clone the repository.
 2. Create a `.env` file in the root directory:
    ```env
+   LLM_PROVIDER=gemini
+   
    GEMINI_API_KEY=your_key_here
+   GEMINI_MODEL=gemini-2.0-flash
+
    NVIDIA_API_KEY=your_key_here
+
+    PINECONE_API_KEY=your_key_here
+    PINECONE_INDEX=chatbot-rag-index
+    PINECONE_ENV=us-east-1
+    PINECONE_NAMESPACE=default
+
+    REDIS_URL=redis://localhost:6379
+
+    MAX_UPLOAD_SIZE_MB=50
+    RETRIEVAL_TOP_K=5
+    CHUNK_SIZE=1000
+    CHUNK_OVERLAP=150
+    LLM_TEMPERATURE=0.3
+    BACKEND_URL=http://localhost:8000
