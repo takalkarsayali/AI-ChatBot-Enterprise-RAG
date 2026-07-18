@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - internal-chatbot-network
+    env_file:
+      - .env
+    volumes:
+      - uploaded-documents:/app/data/documents
+      - logs:/app/logs
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    networks:
+      - internal-chatbot-network
+    depends_on:
+      - backend
+    environment:
+      - API_BASE_URL=http://backend:8000
+
+networks:
+  internal-chatbot-network:
+    driver: bridge
+
+volumes:
+  uploaded-documents:
+  logs:
